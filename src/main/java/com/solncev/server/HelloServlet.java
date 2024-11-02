@@ -1,6 +1,5 @@
 package com.solncev.server;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +19,7 @@ public class HelloServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter writer = resp.getWriter();
         String requestBody = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         writer.println(requestBody);

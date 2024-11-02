@@ -1,5 +1,8 @@
 package com.solncev.http;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,10 +10,13 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 public class Sample {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValueAsString(Map.of("name", "Ivan"));
         // get
         try {
             URL url = new URL("https://jsonplaceholder.typicode.com/posts?userId=2");

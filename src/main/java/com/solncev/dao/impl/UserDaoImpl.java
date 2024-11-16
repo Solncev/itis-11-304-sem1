@@ -22,6 +22,30 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public User getByLogin(String login) {
+        try {
+            String sql = "select * from users where login = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, login);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    return new User(
+                            resultSet.getInt("id"),
+                            resultSet.getString("name"),
+                            resultSet.getString("lastname"),
+                            resultSet.getString("login"),
+                            resultSet.getString("password")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    @Override
     public List<User> getAll() {
         try {
             Statement statement = connection.createStatement();

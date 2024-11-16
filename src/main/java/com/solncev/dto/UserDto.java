@@ -4,12 +4,12 @@ public class UserDto {
 
     private String name;
     private Integer score;
-    private String login;
+    private String lastname;
 
-    public UserDto(String name, Integer score, String login) {
+    public UserDto(String name, Integer score, String lastname) {
         this.name = name;
         this.score = score;
-        this.login = login;
+        this.lastname = lastname;
     }
 
     public String getName() {
@@ -20,7 +20,7 @@ public class UserDto {
         return score;
     }
 
-    public String getLogin() {
-        return login;
+    public String getLastname() {
+        return lastname;
     }
 }

@@ -1,5 +1,8 @@
 package com.solncev.servlet;
 
+import com.cloudinary.Cloudinary;
+import com.solncev.util.CloudinaryUtil;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Paths;
+import java.util.HashMap;
 
 @WebServlet(urlPatterns = "/upload")
 @MultipartConfig(
@@ -21,6 +25,7 @@ import java.nio.file.Paths;
 )
 public class UploadFileServlet extends HttpServlet {
 
+    private final Cloudinary cloudinary = CloudinaryUtil.getInstance();
     private static final String FILE_PREFIX = "/tmp";
     private static final int DIRECTORIES_COUNT = 10;
 
@@ -41,5 +46,6 @@ public class UploadFileServlet extends HttpServlet {
         outputStream.write(buffer);
         outputStream.close();
 
+        cloudinary.uploader().upload(file, new HashMap<>());
     }
 }

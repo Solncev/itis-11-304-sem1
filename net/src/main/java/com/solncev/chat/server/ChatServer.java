@@ -14,7 +14,6 @@ public class ChatServer {
 
     private ServerSocket serverSocket;
     private List<Client> clients = new ArrayList<>();
-    ;
 
     static class Client implements Runnable {
 
